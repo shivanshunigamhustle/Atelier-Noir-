@@ -1,0 +1,619 @@
+import type {
+  Product,
+  Collection,
+  Customer,
+  Order,
+  DiscountCode,
+  EditorialContent,
+  TeamMember,
+  StoreProfile,
+  WishlistEntry,
+  Address,
+} from "./types";
+import { categoryImages, editorialImage, rawUnsplash } from "./image-library";
+
+export const INITIAL_PRODUCTS: Product[] = [
+  {
+    id: "p1",
+    name: "The Oversized Wool Coat",
+    category: "Outerwear",
+    price: 890,
+    colors: ["Black", "Camel"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    variants: [
+      { color: "Black", size: "XS", stock: 4 },
+      { color: "Black", size: "S", stock: 10 },
+      { color: "Black", size: "M", stock: 12 },
+      { color: "Black", size: "L", stock: 8 },
+      { color: "Black", size: "XL", stock: 3 },
+      { color: "Camel", size: "XS", stock: 1 },
+      { color: "Camel", size: "S", stock: 2 },
+      { color: "Camel", size: "M", stock: 2 },
+      { color: "Camel", size: "L", stock: 0 },
+      { color: "Camel", size: "XL", stock: 0 },
+    ],
+    stock: 42,
+    status: "Active",
+    images: categoryImages("Outerwear", 4, 0),
+    description:
+      "An architectural silhouette cut from double-faced Italian wool. Designed for layering, finished with horn buttons and a hand-stitched collar.",
+    fit: "Oversized fit. Model is 5'10\" wearing size S.",
+    care: "Dry clean only. Store on a wide hanger to preserve shoulder structure.",
+    isNew: true,
+    createdAt: "2026-09-02",
+  },
+  {
+    id: "p2",
+    name: "Cashmere Crewneck",
+    category: "Knitwear",
+    price: 340,
+    colors: ["Ivory", "Grey", "Black"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    variants: [
+      { color: "Ivory", size: "XS", stock: 2 },
+      { color: "Ivory", size: "S", stock: 1 },
+      { color: "Ivory", size: "M", stock: 2 },
+      { color: "Ivory", size: "L", stock: 1 },
+      { color: "Ivory", size: "XL", stock: 0 },
+      { color: "Grey", size: "S", stock: 1 },
+      { color: "Grey", size: "M", stock: 1 },
+      { color: "Black", size: "M", stock: 0 },
+    ],
+    stock: 8,
+    status: "Active",
+    images: categoryImages("Knitwear", 4, 0),
+    description:
+      "Two-ply grade-A cashmere, knit on vintage machinery for a dense, long-lasting hand feel. A quiet staple built to outlast seasons.",
+    fit: "True to size, relaxed through the body.",
+    care: "Hand wash cold or dry clean. Lay flat to dry.",
+    createdAt: "2026-08-14",
+  },
+  {
+    id: "p3",
+    name: "Silk Slip Dress",
+    category: "Dresses",
+    price: 420,
+    colors: ["Oxblood", "Black"],
+    sizes: ["XS", "S", "M", "L"],
+    variants: [
+      { color: "Oxblood", size: "XS", stock: 3 },
+      { color: "Oxblood", size: "S", stock: 5 },
+      { color: "Oxblood", size: "M", stock: 4 },
+      { color: "Oxblood", size: "L", stock: 2 },
+      { color: "Black", size: "S", stock: 6 },
+      { color: "Black", size: "M", stock: 5 },
+    ],
+    stock: 15,
+    status: "Active",
+    images: categoryImages("Dresses", 4, 0),
+    description:
+      "Bias-cut mulberry silk that falls close to the body. A single bodice seam, adjustable straps, finished hem.",
+    fit: "Cut on the bias; sizes run true. Size up for a looser drape.",
+    care: "Dry clean only.",
+    isNew: true,
+    createdAt: "2026-09-20",
+  },
+  {
+    id: "p4",
+    name: "Tailored Wide-Leg Trouser",
+    category: "Tailoring",
+    price: 310,
+    colors: ["Black", "Camel"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    variants: [
+      { color: "Black", size: "XS", stock: 0 },
+      { color: "Black", size: "S", stock: 0 },
+      { color: "Camel", size: "M", stock: 0 },
+    ],
+    stock: 0,
+    status: "Draft",
+    images: categoryImages("Tailoring", 4, 1),
+    description:
+      "A sharp, wide-leg trouser with a high rise and a single pleat. Cut from a mid-weight wool suiting.",
+    fit: "High-rise, wide through the leg. True to size.",
+    care: "Dry clean only.",
+    createdAt: "2026-07-11",
+  },
+  {
+    id: "p5",
+    name: "Leather Belt Bag",
+    category: "Accessories",
+    price: 260,
+    colors: ["Black", "Oxblood"],
+    sizes: ["One Size"],
+    variants: [
+      { color: "Black", size: "One Size", stock: 14 },
+      { color: "Oxblood", size: "One Size", stock: 9 },
+    ],
+    stock: 23,
+    status: "Active",
+    images: categoryImages("Accessories", 4, 0),
+    description:
+      "Vegetable-tanned leather, hand-burnished edges, adjustable strap. Sized for a phone, cards and keys.",
+    fit: "One size. Strap adjusts from 28\" to 48\".",
+    care: "Wipe clean with a dry cloth. Condition leather twice a year.",
+    createdAt: "2026-06-30",
+  },
+  {
+    id: "p6",
+    name: "Structured Blazer",
+    category: "Tailoring",
+    price: 560,
+    colors: ["Black", "Ivory"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    variants: [
+      { color: "Black", size: "XS", stock: 2 },
+      { color: "Black", size: "S", stock: 1 },
+      { color: "Black", size: "M", stock: 1 },
+      { color: "Black", size: "L", stock: 1 },
+      { color: "Ivory", size: "S", stock: 1 },
+      { color: "Ivory", size: "M", stock: 0 },
+    ],
+    stock: 6,
+    status: "Active",
+    images: categoryImages("Tailoring", 4, 0),
+    description:
+      "A single-breasted blazer with a cinched waist and sharp notch lapel. Fully canvassed for structure that holds its shape.",
+    fit: "Fitted through the waist. True to size.",
+    care: "Dry clean only.",
+    isBestseller: true,
+    createdAt: "2026-08-02",
+  },
+  {
+    id: "p7",
+    name: "Suede Ankle Boot",
+    category: "Footwear",
+    price: 480,
+    colors: ["Camel", "Black"],
+    sizes: ["36", "37", "38", "39", "40", "41"],
+    variants: [
+      { color: "Camel", size: "37", stock: 3 },
+      { color: "Camel", size: "38", stock: 5 },
+      { color: "Camel", size: "39", stock: 6 },
+      { color: "Camel", size: "40", stock: 3 },
+      { color: "Black", size: "38", stock: 1 },
+      { color: "Black", size: "39", stock: 1 },
+    ],
+    stock: 19,
+    status: "Active",
+    images: categoryImages("Footwear", 4, 0),
+    description:
+      "A clean ankle boot in brushed suede with a stacked block heel and a leather sole built for repair, not replacement.",
+    fit: "Runs true to size. Half sizes, size down.",
+    care: "Protect with a suede guard before first wear.",
+    createdAt: "2026-05-18",
+  },
+  {
+    id: "p8",
+    name: "Merino Turtleneck",
+    category: "Knitwear",
+    price: 220,
+    colors: ["Black", "Ivory", "Oxblood"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    variants: [
+      { color: "Black", size: "M", stock: 0 },
+      { color: "Ivory", size: "M", stock: 0 },
+    ],
+    stock: 31,
+    status: "Archived",
+    images: categoryImages("Knitwear", 4, 1),
+    description:
+      "Fine-gauge merino, knit close to the body with a stand collar. A base layer that reads like outerwear.",
+    fit: "Slim fit. Size up for more ease.",
+    care: "Hand wash cold. Lay flat to dry.",
+    createdAt: "2026-02-04",
+  },
+  {
+    id: "p9",
+    name: "Camel Wrap Scarf",
+    category: "Accessories",
+    price: 190,
+    colors: ["Camel", "Grey"],
+    sizes: ["One Size"],
+    variants: [
+      { color: "Camel", size: "One Size", stock: 18 },
+      { color: "Grey", size: "One Size", stock: 11 },
+    ],
+    stock: 29,
+    status: "Active",
+    images: categoryImages("Accessories", 4, 1),
+    description:
+      "Oversized wool-cashmere scarf, brushed for softness, finished with a hand-twisted fringe.",
+    fit: "One size, 78\" x 28\".",
+    care: "Dry clean only.",
+    createdAt: "2026-09-28",
+  },
+  {
+    id: "p10",
+    name: "Pleated Midi Skirt",
+    category: "Tailoring",
+    price: 280,
+    colors: ["Black", "Ivory"],
+    sizes: ["XS", "S", "M", "L"],
+    variants: [
+      { color: "Black", size: "XS", stock: 5 },
+      { color: "Black", size: "S", stock: 6 },
+      { color: "Ivory", size: "M", stock: 4 },
+    ],
+    stock: 15,
+    status: "Active",
+    images: categoryImages("Tailoring", 4, 4),
+    description:
+      "Knife-pleated midi skirt in a fluid wool blend that holds its pleat through movement and travel.",
+    fit: "High-rise, true to size.",
+    care: "Dry clean only.",
+    createdAt: "2026-08-25",
+  },
+  {
+    id: "p11",
+    name: "Grain Leather Gloves",
+    category: "Accessories",
+    price: 150,
+    colors: ["Black"],
+    sizes: ["XS", "S", "M", "L"],
+    variants: [
+      { color: "Black", size: "S", stock: 7 },
+      { color: "Black", size: "M", stock: 9 },
+      { color: "Black", size: "L", stock: 4 },
+    ],
+    stock: 20,
+    status: "Active",
+    images: categoryImages("Accessories", 4, 2),
+    description:
+      "Nappa leather gloves lined in cashmere, cut close to the hand with a single top-stitch detail.",
+    fit: "True to size.",
+    care: "Keep dry. Professional leather clean only.",
+    createdAt: "2026-09-10",
+  },
+  {
+    id: "p12",
+    name: "Double-Breasted Overcoat",
+    category: "Outerwear",
+    price: 1120,
+    colors: ["Black", "Grey"],
+    sizes: ["S", "M", "L", "XL"],
+    variants: [
+      { color: "Black", size: "S", stock: 2 },
+      { color: "Black", size: "M", stock: 3 },
+      { color: "Grey", size: "M", stock: 2 },
+      { color: "Grey", size: "L", stock: 1 },
+    ],
+    stock: 8,
+    status: "Active",
+    images: categoryImages("Outerwear", 4, 1),
+    description:
+      "A floor-sweeping overcoat in heavyweight wool twill, cut for maximum coverage with a storm-ready collar.",
+    fit: "Oversized. Consider sizing down if between sizes.",
+    care: "Dry clean only.",
+    isNew: true,
+    createdAt: "2026-10-01",
+  },
+];
+
+export const INITIAL_COLLECTIONS: Collection[] = [
+  {
+    id: "c1",
+    slug: "noir-winter-26",
+    name: "Noir Winter '26",
+    coverImage: editorialImage(0, 1600, 900),
+    productIds: ["p1", "p2", "p3", "p6", "p9", "p11", "p12", "p10"],
+  },
+  {
+    id: "c2",
+    slug: "resort-essentials",
+    name: "Resort Essentials",
+    coverImage: editorialImage(3, 1600, 900),
+    productIds: ["p3", "p5", "p7", "p9", "p10", "p8", "p2", "p11"],
+  },
+  {
+    id: "c3",
+    slug: "the-tailoring-edit",
+    name: "The Tailoring Edit",
+    coverImage: rawUnsplash("1551232864-3f0890e580d9", 1600, 900),
+    productIds: ["p4", "p6", "p10", "p1", "p12", "p9"],
+  },
+];
+
+function makeAddress(partial: Omit<Address, "id" | "isDefault">, isDefault = true): Address {
+  return { id: `addr-${Math.random().toString(36).slice(2, 9)}`, isDefault, ...partial };
+}
+
+export const INITIAL_CUSTOMERS: Customer[] = [
+  {
+    id: "cust1",
+    name: "Margaux Lenoir",
+    email: "margaux.lenoir@example.com",
+    phone: "(312) 555-0148",
+    joinedDate: "2024-11-02",
+    lifetimeSpend: 2140,
+    orderIds: ["AN-10448", "AN-10512"],
+    addresses: [
+      makeAddress({
+        label: "Home",
+        fullName: "Margaux Lenoir",
+        line1: "214 Lakeshore Drive",
+        line2: "Apt 6B",
+        city: "Chicago",
+        state: "IL",
+        zip: "60601",
+        country: "United States",
+        phone: "(312) 555-0148",
+      }, true),
+      makeAddress({
+        label: "Work",
+        fullName: "Margaux Lenoir",
+        line1: "88 Wacker Place",
+        city: "Chicago",
+        state: "IL",
+        zip: "60606",
+        country: "United States",
+        phone: "(312) 555-0148",
+      }, false),
+    ],
+    notes: [],
+  },
+  {
+    id: "cust2",
+    name: "Theo Marchetti",
+    email: "theo.marchetti@example.com",
+    phone: "(646) 555-0112",
+    joinedDate: "2025-02-14",
+    lifetimeSpend: 890,
+    orderIds: ["AN-10452"],
+    addresses: [
+      makeAddress({
+        label: "Home",
+        fullName: "Theo Marchetti",
+        line1: "410 Bowery",
+        city: "New York",
+        state: "NY",
+        zip: "10013",
+        country: "United States",
+        phone: "(646) 555-0112",
+      }),
+    ],
+    notes: [],
+  },
+  {
+    id: "cust3",
+    name: "Simone Achebe",
+    email: "simone.achebe@example.com",
+    phone: "(415) 555-0177",
+    joinedDate: "2025-05-30",
+    lifetimeSpend: 3420,
+    orderIds: ["AN-10461"],
+    addresses: [
+      makeAddress({
+        label: "Home",
+        fullName: "Simone Achebe",
+        line1: "1200 Fillmore Street",
+        city: "San Francisco",
+        state: "CA",
+        zip: "94115",
+        country: "United States",
+        phone: "(415) 555-0177",
+      }),
+    ],
+    notes: [
+      { id: "n1", body: "Prefers email over phone for delivery updates.", timestamp: "2026-09-12T14:00:00Z" },
+    ],
+  },
+  {
+    id: "cust4",
+    name: "Rafael Costa",
+    email: "rafael.costa@example.com",
+    phone: "(305) 555-0199",
+    joinedDate: "2025-07-19",
+    lifetimeSpend: 410,
+    orderIds: ["AN-10467"],
+    addresses: [
+      makeAddress({
+        label: "Home",
+        fullName: "Rafael Costa",
+        line1: "77 Ocean Drive",
+        city: "Miami",
+        state: "FL",
+        zip: "33139",
+        country: "United States",
+        phone: "(305) 555-0199",
+      }),
+    ],
+    notes: [],
+  },
+  {
+    id: "cust5",
+    name: "Priya Nair",
+    email: "priya.nair@example.com",
+    phone: "(206) 555-0133",
+    joinedDate: "2026-01-08",
+    lifetimeSpend: 1275,
+    orderIds: ["AN-10474"],
+    addresses: [
+      makeAddress({
+        label: "Home",
+        fullName: "Priya Nair",
+        line1: "900 Pine Street",
+        city: "Seattle",
+        state: "WA",
+        zip: "98101",
+        country: "United States",
+        phone: "(206) 555-0133",
+      }),
+    ],
+    notes: [],
+  },
+];
+
+function lineItem(productId: string, color: Product["colors"][number], size: Product["sizes"][number], qty: number): Order["items"][number] {
+  const product = INITIAL_PRODUCTS.find((p) => p.id === productId)!;
+  return {
+    productId,
+    name: product.name,
+    image: product.images[0],
+    color,
+    size,
+    qty,
+    price: product.price,
+  };
+}
+
+export const INITIAL_ORDERS: Order[] = [
+  {
+    id: "AN-10448",
+    customerId: "cust1",
+    date: "2026-10-02",
+    items: [lineItem("p1", "Black", "S", 1), lineItem("p9", "Camel", "One Size", 1)],
+    status: "Delivered",
+    total: 1230,
+    shippingAddress: INITIAL_CUSTOMERS[0].addresses[0],
+    paymentMethodMasked: "Visa •••• 4471",
+    notes: [],
+    statusHistory: [
+      { status: "Processing", timestamp: "2026-10-02T10:00:00Z" },
+      { status: "Shipped", timestamp: "2026-10-03T15:00:00Z" },
+      { status: "Delivered", timestamp: "2026-10-06T12:30:00Z" },
+    ],
+  },
+  {
+    id: "AN-10512",
+    customerId: "cust1",
+    date: "2026-10-09",
+    items: [lineItem("p6", "Black", "S", 1)],
+    status: "Processing",
+    total: 560,
+    shippingAddress: INITIAL_CUSTOMERS[0].addresses[0],
+    paymentMethodMasked: "Visa •••• 4471",
+    notes: [],
+    statusHistory: [{ status: "Processing", timestamp: "2026-10-09T09:12:00Z" }],
+  },
+  {
+    id: "AN-10452",
+    customerId: "cust2",
+    date: "2026-10-05",
+    items: [lineItem("p7", "Camel", "40", 1)],
+    status: "Shipped",
+    total: 560,
+    shippingAddress: INITIAL_CUSTOMERS[1].addresses[0],
+    paymentMethodMasked: "Mastercard •••• 2210",
+    notes: [],
+    statusHistory: [
+      { status: "Processing", timestamp: "2026-10-05T09:00:00Z" },
+      { status: "Shipped", timestamp: "2026-10-06T11:00:00Z" },
+    ],
+  },
+  {
+    id: "AN-10461",
+    customerId: "cust3",
+    date: "2026-10-08",
+    items: [lineItem("p1", "Camel", "M", 1), lineItem("p3", "Oxblood", "S", 1), lineItem("p11", "Black", "M", 1)],
+    status: "Processing",
+    total: 2180,
+    shippingAddress: INITIAL_CUSTOMERS[2].addresses[0],
+    paymentMethodMasked: "Amex •••• 1009",
+    notes: [
+      { id: "n2", body: "Customer requested gift wrap.", timestamp: "2026-10-08T16:00:00Z" },
+    ],
+    statusHistory: [{ status: "Processing", timestamp: "2026-10-08T13:45:00Z" }],
+  },
+  {
+    id: "AN-10467",
+    customerId: "cust4",
+    date: "2026-10-10",
+    items: [lineItem("p5", "Oxblood", "One Size", 1)],
+    status: "Cancelled",
+    total: 420,
+    shippingAddress: INITIAL_CUSTOMERS[3].addresses[0],
+    paymentMethodMasked: "Visa •••• 7742",
+    notes: [],
+    statusHistory: [
+      { status: "Processing", timestamp: "2026-10-10T08:00:00Z" },
+      { status: "Cancelled", timestamp: "2026-10-11T09:20:00Z" },
+    ],
+  },
+  {
+    id: "AN-10474",
+    customerId: "cust5",
+    date: "2026-10-11",
+    items: [lineItem("p9", "Grey", "One Size", 1), lineItem("p2", "Ivory", "M", 1)],
+    status: "Processing",
+    total: 780,
+    shippingAddress: INITIAL_CUSTOMERS[4].addresses[0],
+    paymentMethodMasked: "Visa •••• 3391",
+    notes: [],
+    statusHistory: [{ status: "Processing", timestamp: "2026-10-11T10:05:00Z" }],
+  },
+];
+
+export const INITIAL_DISCOUNTS: DiscountCode[] = [
+  { id: "d1", code: "WELCOME10", type: "Percentage", value: 10, uses: 142, expires: "2026-12-31", active: true },
+  { id: "d2", code: "FREESHIP", type: "Free shipping", value: 0, uses: 58, expires: "2026-11-15", active: true },
+  { id: "d3", code: "VIP50", type: "Fixed amount", value: 50, uses: 12, expires: "2026-10-20", active: true },
+  { id: "d4", code: "SUMMER25", type: "Percentage", value: 25, uses: 310, expires: "2026-09-01", active: false },
+];
+
+export const INITIAL_WISHLIST: WishlistEntry[] = [
+  { customerId: "cust1", productId: "p1", addedDate: "2026-09-15" },
+  { customerId: "cust1", productId: "p7", addedDate: "2026-09-20" },
+];
+
+export const INITIAL_EDITORIAL: EditorialContent = {
+  hero: {
+    image: editorialImage(2),
+    headline: "A quieter kind\nof statement.",
+    subtext: "Considered silhouettes. Exceptional materials. Everyday distinction.",
+    ctaLabel: "DISCOVER THE COLLECTION",
+    ctaCollectionSlug: "noir-winter-26",
+  },
+  lookbook: [
+    { id: "lb1", image: categoryImages("Outerwear", 1, 0, 900, 1150)[0], caption: "The Oversized Wool Coat, in Black." },
+    { id: "lb2", image: categoryImages("Knitwear", 1, 0, 900, 1150)[0], caption: "Cashmere layering, Ivory and Grey." },
+    { id: "lb3", image: categoryImages("Tailoring", 1, 0, 900, 1150)[0], caption: "The Tailoring Edit, head to toe." },
+    { id: "lb4", image: categoryImages("Footwear", 1, 0, 900, 1150)[0], caption: "Suede boots, built for the commute." },
+  ],
+};
+
+export const INITIAL_TEAM: TeamMember[] = [
+  { id: "t1", name: "Jordan Pierce", role: "Store Manager", status: "Active", email: "jordan.pierce@ateliernoir.com" },
+  { id: "t2", name: "Noa Fischer", role: "Associate", status: "Active", email: "noa.fischer@ateliernoir.com" },
+  { id: "t3", name: "Idris Whitfield", role: "Viewer", status: "Invited", email: "idris.whitfield@ateliernoir.com" },
+];
+
+export const INITIAL_STORE_PROFILE: StoreProfile = {
+  name: "Atelier Noir",
+  supportEmail: "care@ateliernoir.com",
+  address: "412 Greene Street, New York, NY 10012",
+  currency: "USD",
+  timezone: "America/New_York",
+};
+
+export const CATEGORY_TILES: { label: string; href: string; image: string }[] = [
+  { label: "Womenswear", href: "/shop", image: categoryImages("Outerwear", 1, 2, 900, 1100)[0] },
+  { label: "Menswear", href: "/shop", image: categoryImages("Tailoring", 1, 0, 900, 1100)[0] },
+  { label: "Footwear", href: "/shop?category=Footwear", image: categoryImages("Footwear", 1, 0, 900, 1100)[0] },
+  { label: "Accessories", href: "/shop?category=Accessories", image: categoryImages("Accessories", 1, 2, 900, 1100)[0] },
+];
+
+export const ALL_CATEGORIES: Product["category"][] = [
+  "Outerwear",
+  "Knitwear",
+  "Dresses",
+  "Tailoring",
+  "Accessories",
+  "Footwear",
+];
+
+export const ALL_SIZES: Product["sizes"][number][] = ["XS", "S", "M", "L", "XL"];
+
+export const ALL_COLORS: Product["colors"][number][] = ["Black", "Ivory", "Camel", "Oxblood", "Grey"];
+
+export const COLOR_SWATCH: Record<string, string> = {
+  Black: "#242420",
+  Ivory: "#f7f4ee",
+  Camel: "#b69a62",
+  Oxblood: "#7c1f23",
+  Grey: "#9a9a92",
+  "One Size": "#e8e0d4",
+};
+
+export const CURRENT_CUSTOMER_ID = "cust1";
+export const ADMIN_STAFF = { name: "Jordan Pierce", title: "Store Manager" };

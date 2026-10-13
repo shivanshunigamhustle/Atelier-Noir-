@@ -1,0 +1,20 @@
+Atelier Noir generated website reference assets
+
+Cropped assets are taken from the provided full-page mockup, so some are crops of a flattened design image rather than original source photography.
+Use these as visual references/placeholders; for production, source or generate clean standalone product and campaign images.
+
+Files:
+- ASSET_INDEX.txt
+- full-homepage-reference.jpg
+- hero-campaign.jpg
+- products/handbag-product.jpg
+- products/knitwear-product.jpg
+- products/loafers-product.jpg
+- products/menswear-product.jpg
+- products/shirt-product.jpg
+- products/trousers-product.jpg
+- categories/footwear-category.jpg
+- categories/kids-category.jpg
+- categories/men-category.jpg
+- categories/women-category.jpg
+- branding/atelier-noir-wordmark.jpg
