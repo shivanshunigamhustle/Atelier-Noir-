@@ -1,8 +1,10 @@
-function unsplash(id: string, w: number, h: number) {
-  return `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&q=65&fit=crop&fm=jpg&auto=compress`;
+// All photography is downloaded once (see public/images/) and served locally —
+// no runtime dependency on an external image host.
+function localImage(id: string) {
+  return `/images/${id}.jpg`;
 }
 
-// Curated, visually-verified editorial fashion photography (Unsplash), grouped by category.
+// Curated, visually-verified editorial fashion photography, grouped by category.
 // Verified via browser: each id resolves to a real clothing/apparel photo matching its label.
 export const CATEGORY_PHOTOS: Record<string, string[]> = {
   Outerwear: [
@@ -43,23 +45,25 @@ export const CATEGORY_PHOTOS: Record<string, string[]> = {
     "1608256246200-53e635b5b65f", // leather lace-up boot
     "1605812860427-4024433a70fd", // suede boots, hanging
     "1525507119028-ed4c629a60a3", // heeled shoes, detail
+    "1533867617858-e7b97e060509", // brown leather monk-strap shoes
+    "1596703263926-eb0762ee17e4", // black pointed pump, held
   ],
 };
 
 const FALLBACK = CATEGORY_PHOTOS.Tailoring;
 
-export function categoryImages(category: string, count: number, offset = 0, w = 900, h = 1125): string[] {
+export function categoryImages(category: string, count: number, offset = 0): string[] {
   const pool = CATEGORY_PHOTOS[category] ?? FALLBACK;
   const out: string[] = [];
   for (let i = 0; i < count; i++) {
-    out.push(unsplash(pool[(offset + i) % pool.length], w, h));
+    out.push(localImage(pool[(offset + i) % pool.length]));
   }
   return out;
 }
 
-export function categoryImage(category: string, index = 0, w = 900, h = 1125): string {
+export function categoryImage(category: string, index = 0): string {
   const pool = CATEGORY_PHOTOS[category] ?? FALLBACK;
-  return unsplash(pool[index % pool.length], w, h);
+  return localImage(pool[index % pool.length]);
 }
 
 // Wide, editorial shots for hero/landing/collection-cover use (any category, cover-fit).
@@ -70,10 +74,10 @@ export const EDITORIAL_WIDE = [
   "1515886657613-9f3515b0c78f",
 ];
 
-export function editorialImage(index: number, w = 1800, h = 1100): string {
-  return unsplash(EDITORIAL_WIDE[index % EDITORIAL_WIDE.length], w, h);
+export function editorialImage(index: number): string {
+  return localImage(EDITORIAL_WIDE[index % EDITORIAL_WIDE.length]);
 }
 
-export function rawUnsplash(id: string, w: number, h: number): string {
-  return unsplash(id, w, h);
+export function rawUnsplash(id: string): string {
+  return localImage(id);
 }

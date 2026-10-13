@@ -46,7 +46,7 @@ export default function AdminCollectionsPage() {
           id: `c-${Math.random().toString(36).slice(2, 9)}`,
           slug: draftName.toLowerCase().replace(/\s+/g, "-"),
           name: draftName,
-          coverImage: editorialImage(Math.floor(Math.random() * 4), 1600, 900),
+          coverImage: editorialImage(Math.floor(Math.random() * 4)),
           productIds: draftProductIds,
         },
       });
@@ -120,7 +120,7 @@ export default function AdminCollectionsPage() {
                 onClick={() =>
                   setEditing({
                     ...editing,
-                    coverImage: editorialImage(Math.floor(Math.random() * 4), 1600, 900),
+                    coverImage: editorialImage(Math.floor(Math.random() * 4)),
                   })
                 }
                 className="mt-2 text-xs underline underline-offset-4"

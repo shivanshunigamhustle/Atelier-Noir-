@@ -28,6 +28,7 @@ export type ProductSize =
   | "39"
   | "40"
   | "41"
+  | "42"
   | "One Size";
 
 export interface ProductVariant {

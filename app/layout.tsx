@@ -18,6 +18,7 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   title: {
     default: "Atelier Noir — Contemporary Fashion, Considered",
     template: "%s — Atelier Noir",

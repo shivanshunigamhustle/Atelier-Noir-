@@ -24,7 +24,7 @@ export default function EditorialPage() {
   function replaceSlot(id: string) {
     setLookbook((slots) =>
       slots.map((s) =>
-        s.id === id ? { ...s, image: editorialImage(Math.floor(Math.random() * 4), 900, 1150) } : s
+        s.id === id ? { ...s, image: editorialImage(Math.floor(Math.random() * 4)) } : s
       )
     );
   }
