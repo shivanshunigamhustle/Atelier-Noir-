@@ -49,9 +49,9 @@ export function SiteFooter() {
           <h4 className="text-xs tracking-[0.1em] text-charcoal/50">Shop</h4>
           <ul className="mt-4 flex flex-col gap-3 text-sm">
             <li><Link href="/shop">All Products</Link></li>
-            <li><Link href="/shop/noir-winter-26">Noir Winter &apos;26</Link></li>
-            <li><Link href="/shop/resort-essentials">Resort Essentials</Link></li>
-            <li><Link href="/shop/the-tailoring-edit">The Tailoring Edit</Link></li>
+            <li><Link href="/shop/the-essentials-edit">The Essentials Edit</Link></li>
+            <li><Link href="/shop/silk-sleep-collection">Silk Sleep Collection</Link></li>
+            <li><Link href="/shop/the-lounge-edit">The Lounge Edit</Link></li>
           </ul>
         </div>
 

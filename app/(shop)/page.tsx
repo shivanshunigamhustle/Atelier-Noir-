@@ -128,7 +128,7 @@ export default function HomePage() {
         >
           <Image
             src={lookbook[2]?.image ?? hero.image}
-            alt="The Tailoring Edit"
+            alt="Silk Sleep Collection"
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             className="object-cover photo-grade"
@@ -146,14 +146,14 @@ export default function HomePage() {
           </h2>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-charcoal/70">
             Every piece begins with a mill, not a mood board. We work in small runs with the same
-            handful of ateliers season after season, so the wool, the leather and the stitching
+            handful of ateliers season after season, so the silk, the modal and the stitching
             hold up long after the trend cycle moves on.
           </p>
           <Link
-            href="/shop/the-tailoring-edit"
+            href="/shop/silk-sleep-collection"
             className="group mt-7 inline-flex items-center gap-2 border-b border-charcoal pb-1 text-sm text-charcoal"
           >
-            Explore the Tailoring Edit
+            Explore the Silk Sleep Collection
             <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
@@ -162,7 +162,7 @@ export default function HomePage() {
       <section className="container-page mt-24">
         <div className="grid grid-cols-1 divide-y divide-line-soft border-y border-line-soft sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {[
-            { icon: Leaf, title: "Considered Materials", body: "Wool, cashmere and leather sourced from mills we visit ourselves." },
+            { icon: Leaf, title: "Considered Materials", body: "Silk, modal and cotton sourced from mills we visit ourselves." },
             { icon: Truck, title: "Complimentary Shipping", body: "On every order over $150, shipped within two business days." },
             { icon: ArrowCounterClockwise, title: "30-Day Returns", body: "Free returns on unworn pieces, no questions asked." },
           ].map(({ icon: Icon, title, body }) => (

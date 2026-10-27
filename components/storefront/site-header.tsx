@@ -11,11 +11,11 @@ import { SearchOverlay } from "./search-overlay";
 
 const NAV_CATEGORIES = [
   { label: "New Arrivals", href: "/shop?sort=newest" },
-  { label: "Women", href: "/shop" },
-  { label: "Men", href: "/shop" },
-  { label: "Objects", href: "/shop?category=Accessories" },
-  { label: "Footwear", href: "/shop?category=Footwear" },
-  { label: "Designers", href: "/shop/noir-winter-26" },
+  { label: "Bras", href: "/shop?category=Bras" },
+  { label: "Underwear", href: "/shop?category=Underwear" },
+  { label: "Loungewear", href: "/shop?category=Loungewear" },
+  { label: "Sleepwear", href: "/shop?category=Sleepwear" },
+  { label: "Shapewear", href: "/shop?category=Shapewear" },
   { label: "Journal", href: "/about" },
 ];
 

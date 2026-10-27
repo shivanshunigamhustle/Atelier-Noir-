@@ -154,7 +154,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                 <div className="pt-6">
                   <p className="text-xs uppercase tracking-[0.1em] text-charcoal/40">Popular searches</p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {["Coat", "Knitwear", "Boots", "Tailoring", "Accessories"].map((term) => (
+                    {["Bra", "Underwear", "Loungewear", "Sleepwear", "Robe"].map((term) => (
                       <button
                         key={term}
                         onClick={() => setQuery(term)}

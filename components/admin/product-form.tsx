@@ -25,14 +25,14 @@ export function emptyProductForm(): ProductFormValue {
   return {
     name: "",
     description: "",
-    category: "Outerwear",
+    category: "Bras",
     status: "Draft",
     price: 0,
     compareAtPrice: undefined,
     fit: "",
     care: "",
     variants: [{ color: "Black", size: "M", stock: 0 }],
-    images: [categoryImage("Outerwear", 0)],
+    images: [categoryImage("Bras", 0)],
   };
 }
 

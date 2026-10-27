@@ -1,10 +1,10 @@
 export type ProductCategory =
-  | "Outerwear"
-  | "Knitwear"
-  | "Dresses"
-  | "Tailoring"
-  | "Accessories"
-  | "Footwear";
+  | "Bras"
+  | "Underwear"
+  | "Loungewear"
+  | "Sleepwear"
+  | "Shapewear"
+  | "Accessories";
 
 export type ProductStatus = "Active" | "Draft" | "Archived";
 
@@ -12,6 +12,7 @@ export type ProductColor =
   | "Black"
   | "Ivory"
   | "Camel"
+  | "Blush"
   | "Oxblood"
   | "Grey"
   | "One Size";

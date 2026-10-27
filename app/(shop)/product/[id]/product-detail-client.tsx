@@ -81,7 +81,7 @@ export default function ProductDetailClient() {
           <div className="mt-4 grid grid-cols-4 gap-3">
             {product.images.map((src, i) => (
               <button
-                key={src}
+                key={i}
                 onClick={() => setActiveImage(i)}
                 aria-label={`View image ${i + 1}`}
                 className={cn(

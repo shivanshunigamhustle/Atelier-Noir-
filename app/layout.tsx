@@ -20,11 +20,11 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
   title: {
-    default: "Atelier Noir — Contemporary Fashion, Considered",
+    default: "Atelier Noir — Considered Intimates",
     template: "%s — Atelier Noir",
   },
   description:
-    "Atelier Noir is a contemporary fashion house for considered outerwear, knitwear, tailoring and accessories, built from materials that hold their shape season after season.",
+    "Atelier Noir is a premium intimates house for considered bras, underwear, loungewear and sleepwear, built from fabrics that hold their shape season after season.",
   icons: {
     icon: "/icon.svg",
   },
