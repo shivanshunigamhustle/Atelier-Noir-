@@ -35,7 +35,7 @@ export default function HomePage() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="container-page relative z-10 pb-16 text-ivory"
         >
-          <p className="text-xs tracking-[0.3em] text-ivory/70">THE AUTUMN / WINTER COLLECTION</p>
+          <p className="text-xs tracking-[0.3em] text-ivory/70">THE ESSENTIALS EDIT</p>
           <h1 className="font-display mt-4 max-w-xl whitespace-pre-line text-4xl leading-[1.08] sm:text-6xl lg:text-7xl">
             {hero.headline}
           </h1>

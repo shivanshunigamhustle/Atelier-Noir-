@@ -11,10 +11,13 @@ export interface Filters {
   maxPrice: number;
 }
 
-export const EMPTY_FILTERS: Filters = { categories: [], sizes: [], colors: [], maxPrice: 1200 };
+const MIN_PRICE = 20;
+const MAX_PRICE = 150;
+
+export const EMPTY_FILTERS: Filters = { categories: [], sizes: [], colors: [], maxPrice: MAX_PRICE };
 
 export function hasActiveFilters(f: Filters) {
-  return f.categories.length > 0 || f.sizes.length > 0 || f.colors.length > 0 || f.maxPrice < 1200;
+  return f.categories.length > 0 || f.sizes.length > 0 || f.colors.length > 0 || f.maxPrice < MAX_PRICE;
 }
 
 function toggle<T>(list: T[], value: T): T[] {
@@ -109,9 +112,9 @@ export function FilterSidebar({
         </legend>
         <input
           type="range"
-          min={100}
-          max={1200}
-          step={10}
+          min={MIN_PRICE}
+          max={MAX_PRICE}
+          step={5}
           value={filters.maxPrice}
           onChange={(e) => onChange({ ...filters, maxPrice: Number(e.target.value) })}
           className="mt-4 w-full accent-charcoal"

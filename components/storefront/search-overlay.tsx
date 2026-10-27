@@ -86,7 +86,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && goToResults()}
-                  placeholder="Search for coats, knitwear, accessories..."
+                  placeholder="Search for bras, briefs, loungewear..."
                   aria-label="Search products"
                   className="font-display w-full bg-transparent text-2xl placeholder:text-charcoal/30 focus:outline-none sm:text-3xl"
                 />
